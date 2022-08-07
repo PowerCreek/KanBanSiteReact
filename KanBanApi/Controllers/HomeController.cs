@@ -9,6 +9,12 @@ namespace KanBanApi.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult SetStarBoard()
+        {
+            return Ok();
+        }
+
         [HttpGet("/test")]
         public IActionResult Test(string test)
         {
@@ -20,6 +26,12 @@ namespace KanBanApi.Controllers
                     Name = "Side Project B",
                 }
             });
+        }
+
+        [HttpGet]
+        public IActionResult GetBoardList()
+        {
+            return Ok();
         }
 
         [HttpGet("/getboards")]
@@ -66,7 +78,12 @@ namespace KanBanApi.Controllers
                     Name = "Side Project B",
                     Updates = 0,
                 }
-            });
+            }.Select((board, UUID) => new {
+                UUID,
+                board.Name,
+                board.Updates,
+                board.Workspace
+            }));
         }
     }
 }
