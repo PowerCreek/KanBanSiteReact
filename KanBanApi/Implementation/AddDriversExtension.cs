@@ -9,6 +9,7 @@ namespace KanBanApi.Implementation
             )
         {
             services.AddScoped<BoardDriver>();
+            services.AddScoped<UserDriver>();
 
             services.AddScoped<BoardRepository>();
 
