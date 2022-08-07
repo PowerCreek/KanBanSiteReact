@@ -1,5 +1,5 @@
-import { Home } from "./components/Home/Home";
-import { Dashboard } from "./components/Dash/Dashboard";
+import Home from "./components/Home/Home";
+import Dashboard from "./components/Dash/Dashboard";
 
 const AppRoutes = [
     {
@@ -13,7 +13,7 @@ const AppRoutes = [
     },
     {
         path: '/dashboard',
-        element: <Dashboard />
+        element: <Dashboard/>
     }
 ];
 

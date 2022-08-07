@@ -1,31 +1,22 @@
-import React, { Component } from 'react';
+import React, { useState } from "react";
 import Services from '../../Services/ImplementedServices'
 import { Navbar } from '../Navbar/Navbar'
 
-export class Home extends Component {
-    static displayName = Home.name;
+export default function Home() {
+    let Style = (new Services["StyleGen"]())
+        .AddStyle(Services["MainStyles"]["BasePage"])
 
-    constructor(props) {
-        super(props)
-    }
-
-    Style = (new Services["StyleGen"]()).AddStyle(
-        Services["MainStyles"]["BasePage"]
+    return (
+        [
+            <div className="basePage">
+                <Navbar Links={[
+                    ...Services["NavbarLinks"]
+                ]} />
+                <div>Hello world!</div>
+            </div>,
+            <style>
+                {Style.GetStyles()}
+            </style>
+        ]
     )
-
-    render() {
-        return (
-            [
-                <div className="basePage">
-                    <Navbar Links={[
-                        ...Services["NavbarLinks"]
-                    ]} />
-                    <div>Hello world!</div>
-                </div>,
-                <style>
-                    {this.Style.GetStyles()}
-                </style>
-            ]
-        );
-    }
 }
