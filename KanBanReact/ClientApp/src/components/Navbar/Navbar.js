@@ -5,6 +5,7 @@ import Services from '../../Services/ImplementedServices'
 const NAV_CLASS = "nav-group"
 
 export default function Navbar(props) {
+    //concat null or not
     var Links = [].concat(props.Links)
 
     var GetLinks = () => {

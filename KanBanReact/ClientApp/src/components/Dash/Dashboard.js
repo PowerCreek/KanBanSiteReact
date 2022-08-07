@@ -2,7 +2,6 @@
 import Services, { WORKSPACES } from '../../Services/ImplementedServices'
 import Navbar from '../Navbar/Navbar'
 
-
 const DASHBOARD_SECTIONS_FUNC = "DashboardSectionsFunc"
 
 Services[DASHBOARD_SECTIONS_FUNC] = (wk) => {
