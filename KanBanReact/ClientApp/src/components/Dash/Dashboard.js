@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from "react";
 import Services, { WORKSPACES } from '../../Services/ImplementedServices'
-import { Navbar } from '../Navbar/Navbar'
+import Navbar from '../Navbar/Navbar'
 
 
 const DASHBOARD_SECTIONS_FUNC = "DashboardSectionsFunc"
@@ -18,10 +18,11 @@ Services[DASHBOARD_SECTIONS_FUNC] = (wk) => {
     }
 
     let arr = {}
-    for (let a of Object.entries(spaces)) {
-        arr[a[0]] = <div className={BOARD_HEADER}>{a[0]}</div>
-        arr[a[0] + "_"] = build =>
-            <div className={BOARD_SEGMENT}>{[...build(a[1].flatMap(a => { delete a.workspace; return a })),
+
+    for (let spc of Object.entries(spaces)) {
+        arr[spc[0]] = <div className={BOARD_HEADER}>{spc[0]}</div>
+        arr[spc[0] + "_"] = build =>
+            <div className={BOARD_SEGMENT}>{[...build(spc[1].flatMap(a => { delete a.workspace; return a })),
             <div className={`${BOARD_SEGMENT_CARD} ${BOARD_CREATE}`}><div className={BOARD_SEGMENT_CARD_CONTENT}>{
                 "Create new board"
             }</div></div>]}</div>
@@ -158,15 +159,17 @@ export default function Dashboard() {
         .AddStyle(Services["MainStyles"][BOARD_CREATE])
         .AddStyle(Services["MainStyles"][BOARD_CREATE_HOVER])
 
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState([]);
 
     useEffect(() =>
-    {
-        Services[WORKSPACES].GetWorkspacesAsync(data => {
-            setValue((value + 1))
-        })
-    },
-    [])
+        {
+            Services[WORKSPACES].GetWorkspacesAsync(data => {
+            })
+            .then(a =>
+                setValue(value + 1))
+        },
+        [value]
+    )
 
     let buildWorkspaces = (workspaces) => {
         return workspaces.map(wk => constructBoardCard(wk))

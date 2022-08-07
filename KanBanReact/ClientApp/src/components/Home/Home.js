@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Services from '../../Services/ImplementedServices'
-import { Navbar } from '../Navbar/Navbar'
+import Navbar from '../Navbar/Navbar'
 
 export default function Home() {
     let Style = (new Services["StyleGen"]())
