@@ -44,15 +44,12 @@ namespace KanBanApi.Drivers
         public Func<IDictionary<string, object>[]> BoardDetails = () => Array.Empty<IDictionary<string, object>>();
 
         public Func<BoardDriver, string, IDictionary<string, object>[]> GetBoardsFromWorkspaceUUID =
-            (repo, workspace) => repo
-                .AllBoards()
-                .Where(map => map.TryGetValue(WorkspaceKey, out var val) && string.Equals(val, workspace))
+            (repo, workspace) =>
+                Enumerable.Empty<IDictionary<string,object>>()
                 .ToArray();
 
-        public Func<BoardDriver, string, Task<IDictionary<string, object>?>> GetBoardDetails =
-            (driver, board) => Task.FromResult(driver
-                .BoardDetails()
-                .Where(map => map.TryGetValue(BoardKey, out var val) && string.Equals(val, board)).FirstOrDefault());
+        public Func<BoardDriver, string, Task<IDictionary<string, object>?>> GetBoardDetails = 
+            async (_,_) => await Task.FromResult(new Dictionary<string, object>());
 
         public IEnumerable<IDictionary<string, object>> GetWorkspaces()
         {

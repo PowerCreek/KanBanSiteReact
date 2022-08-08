@@ -28,6 +28,25 @@ namespace KanBanApi.Controllers
             });
         }
 
+        [HttpPost("/test")]
+        public async Task<IActionResult> Test([FromBody] IDictionary<string, object> body, CancellationToken token)
+        {
+            try
+            {
+                return Ok(new[]{
+                    new {
+                        Name = "Super Project 1",
+                    },
+                    new {
+                        Name = "Side Project B",
+                    }
+                });
+            }catch(Exception e)
+            {
+                return BadRequest(500);
+            }
+        }
+
         [HttpGet]
         public IActionResult GetBoardList()
         {
