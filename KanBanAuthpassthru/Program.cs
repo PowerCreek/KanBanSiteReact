@@ -101,5 +101,4 @@ app.SetupAuthentication(jwtOptions, "/authentication/token");
 app.UseGetPassThru(inputRoutePrefix: "api");
 app.UsePostPassThru(inputRoutePrefix: "api");
 
-
 app.Run();

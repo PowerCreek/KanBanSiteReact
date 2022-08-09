@@ -16,6 +16,7 @@ namespace KanBanAuthpassthru.TypedClients
         public async Task<HttpResponseMessage> MakeGetCallAsync(HttpRequest request, CancellationToken token)
         {
             HttpRequestMessage hrm = new HttpRequestMessage(HttpMethod.Get, $"{request.Path}{request.QueryString.Value!}");
+
             return await HttpClient.SendAsync(hrm, token);
         }
 
